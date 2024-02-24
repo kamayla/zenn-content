@@ -1,9 +1,0 @@
-title: "代数学の基礎"
-summary: "代数学の学習まとめノート"
-topics: ["数学", "代数学", "論理数学", "集合"]
-published: false
-price: 0 # 有料の場合200〜5000
-# 本に含めるチャプターを順番に並べましょう
-chapters:
-  - chapter1
-  - chapter2
