@@ -51,6 +51,75 @@ Goはシンプルな言語仕様であり、コンパイル言語であるため
 
 「やってみたい」という好奇心と合理性を共存させた意思決定をしていきたいと考えています。
 
+
+## クリーンアーキテクチャ
+1Dではクリーンアーキテクチャを採用しています。クリーンアーキテクチャは、ビジネスロジックをフレームワークから切り離すことで、ビジネスロジックの再利用性を高め、テストしやすくするためのアーキテクチャです。
+
+ただし、gqlgen+.entの統合により生成されるデフォルトのリゾルバーは、レスポンス型にent.Model型を利用することでクエリの利便性を実現しているため、クリーンアーキテクチャの原則に反している部分もあります。
+
+このあたりを丁度よい塩梅で共存させるために、Usecase層では以下のようなent.Modelをラップした独自のEntityに依存させるようにしentに直接依存させないようにしています。
+
+```go 
+package models
+
+import (
+	"oned/ent"
+
+	validation "github.com/go-ozzo/ozzo-validation"
+)
+
+type BiographyEntity struct {
+	model *ent.Biography
+	v     *BiographyValidation
+}
+
+func NewBiographyEntity(
+	name string,
+) (*BiographyEntity, error) {
+	v := &BiographyValidation{}
+	err := validation.Validate(name,
+		v.NameRule()...,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return &BiographyEntity{
+		model: &ent.Biography{
+			Name:        name,
+		},
+	}, nil
+}
+
+func ReconstructBiographyEntity(biography *ent.Biography) *BiographyEntity {
+	return &BiographyEntity{
+		model: biography,
+	}
+}
+
+func (e *BiographyEntity) Model() *ent.Biography {
+	return e.model
+}
+
+func (e *BiographyEntity) ID() uint64 {
+	if e.model == nil {
+		return 0
+	}
+	return e.model.ID
+}
+
+func (e *BiographyEntity) Name() string {
+	if e.model == nil {
+		return ""
+	}
+	return e.model.Name
+}
+```
+
+このように、Usecase層でビジネスロジックを実装する際に、ent.Modelをラップした独自のEntityを操作し、Rsolverのレイヤーでent.Modelを公開することで、クリーンアーキテクチャの原則を守りつつ、gqlgen+.entの利便性を活かすことができるようにしています。
+
+このあたりはまだまだ課題が有ると考えており引き続きブラッシュアップしていきたいと考えています。
+
 ## インフラストラクチャ
 1DではバックエンドのインフラストラクチャにAWSを採用しています。AWSはクラウドプラットフォームであり、サーバーの管理や運用を簡単に行えるため、小規模な開発チームでも運用コストを抑えながらインフラストラクチャを構築できます。
 
