@@ -150,7 +150,7 @@ gqlgenはGo言語でGraphQLサーバーを簡単に構築できるライブラ�
 ## .ent
 .entはGo言語でORMを簡単に構築できるライブラリです。.entはgqlgenとのインテグレーションが提供されており、GraphQLサーバーとデータベースの連携が簡単に行えるため、開発効率が向上します。
 
-またGraphQL Field Collection機能により基本的に自動的にEager Loadingを行うためN+1問題を解消できるため、パフォーマンスが向上します。
+また[GraphQL Field Collection](https://entgo.io/ja/docs/tutorial-todo-gql-field-collection/)機能により基本的に自動的にEager Loadingを行うためN+1問題を解消できるため、パフォーマンスが向上します。
 
 複雑な集計クエリを書く場合は不便なこともあるようですが、1Dではそのような要件は少ないため今のところは問題なく使えています。
 
