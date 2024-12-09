@@ -3,10 +3,10 @@ title: "1D 歯科医療プラットフォームの技術スタック及び選定
 emoji: "🦷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["技術選定"]
-published: false
+published: true
 ---
 
-こんににちわ。ワンディー株式会社のSoftware Engineerをしております上村です。
+こんにちわ。ワンディー株式会社のSoftware Engineerをしております上村です。
 
 歯科医療プラットフォーム[1D](https://oned.jp/)は動画で歯科医療技術が学べるサブスクリプションサービスです。
 
@@ -116,7 +116,7 @@ func (e *BiographyEntity) Name() string {
 }
 ```
 
-このように、Usecase層でビジネスロジックを実装する際に、ent.Modelをラップした独自のEntityを操作し、Rsolverのレイヤーでent.Modelを公開することで、クリーンアーキテクチャの原則を守りつつ、gqlgen+.entの利便性を活かすことができるようにしています。
+このように、Usecase層でビジネスロジックを実装する際に、ent.Modelをラップした独自のEntityを操作し、Resolverのレイヤーでent.Modelを公開することで、クリーンアーキテクチャの原則を守りつつ、gqlgen+.entの利便性を活かすことができるようにしています。
 
 このあたりはまだまだ課題が有ると考えており引き続きブラッシュアップしていきたいと考えています。
 
@@ -150,7 +150,7 @@ gqlgenはGo言語でGraphQLサーバーを簡単に構築できるライブラ�
 ## .ent
 .entはGo言語でORMを簡単に構築できるライブラリです。.entはgqlgenとのインテグレーションが提供されており、GraphQLサーバーとデータベースの連携が簡単に行えるため、開発効率が向上します。
 
-またGraphQL Field Collection機能により基本的に自動的にEager Loadingを行うためN+1問題を解消できるため、パフォーマンスが向上します。
+また[GraphQL Field Collection](https://entgo.io/ja/docs/tutorial-todo-gql-field-collection/)機能を活用することで、基本的にEager Loadingが自動的に実行されるため、N+1問題を効果的に解消できます。その結果、開発者が手間をかけることなく、アプリケーションのパフォーマンスを向上させることが可能です。
 
 複雑な集計クエリを書く場合は不便なこともあるようですが、1Dではそのような要件は少ないため今のところは問題なく使えています。
 
@@ -159,6 +159,7 @@ ReactはUIライブラリであり、コンポーネント指向の開発が行�
 
 ## Next.js
 ![](/images/oned.png)
+
 Next.jsはReactのフレームワークであり、SSR（サーバーサイドレンダリング）やSSG（静的サイトジェネレーション）をサポートしており、ページスピードの向上やSEO対策が行いやすいため採用しました。
 
 また、画像最適化機能やキャッシュ機能、プリレンダリング機能も提供しており、これらの機能に乗っかることで低い開発コストでユーザー体験の向上を図ることができると考えました。
@@ -181,8 +182,7 @@ Apollo ClientはGraphQLクライアントライブラリであり、GraphQLサ�
 
 最後までお読みいただきありがとうございました。
 
-# Links
+# Link
 1Dではメンバーを大募集中です。1Dプラットフォームの開発に興味を持った方がいればぜひご応募お待ちしています。詳しくは以下のページをご覧ください。
 
 - [フルスタックエンジニア](https://findy-code.io/companies/2189/jobs/4IsIFfXrRHKEh)
-
