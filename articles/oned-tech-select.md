@@ -185,4 +185,4 @@ Apollo ClientはGraphQLクライアントライブラリであり、GraphQLサ�
 # Link
 1Dではメンバーを大募集中です。1Dプラットフォームの開発に興味を持った方がいればぜひご応募お待ちしています。詳しくは以下のページをご覧ください。
 
-- [フルスタックエンジニア](https://findy-code.io/companies/2189/jobs/VzUHEpOhoaybK)
+- [フルスタックエンジニア](https://findy-code.io/companies/2189/jobs/te8NYv6CqTvTY)
