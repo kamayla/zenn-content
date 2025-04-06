@@ -97,7 +97,7 @@ $$
 ⑤ より$r = a\mod{n}$なので
 
 $$
-a^k \equiv {a\mod{n}}^k \pmod{n}
+a^k \equiv {(a\mod{n})}^k \pmod{n}
 $$
 
 よって ④ は証明された。
