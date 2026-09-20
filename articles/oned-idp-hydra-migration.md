@@ -3,7 +3,7 @@ title: "Ory Hydra で自前の共通認証基盤を作り、既存ユーザー�
 emoji: "🔐"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["oauth", "openidconnect", "go", "nextjs", "認証"]
-published: false
+published: true
 publication_name: "oned_tech"
 ---
 
